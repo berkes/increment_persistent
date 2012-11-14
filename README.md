@@ -1,4 +1,4 @@
-# About
+﻿# About
 
 Increments numbers and stores them in $HOME/.increment
 
