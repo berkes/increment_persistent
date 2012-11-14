@@ -18,3 +18,8 @@ Feature: increment
     Given there is a store with number 42
     When I run increment 10 times
     Then the number 52 is returned
+
+  Scenario: Only read the number
+    Given there is a store with number 42
+    When I run the runner with '-n'
+    Then the number 42 is returned

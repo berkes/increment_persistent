@@ -8,11 +8,17 @@ Given /^there is no file to store the numbers$/ do
 end
 
 Given /^there is a store with number (\d+)$/ do |number|
-  @incrementor = Increment::Runner.new number
+  i = Increment::Runner.new number.to_i
+end
+
+Given /^I run the runner with '\-n'$/ do
+  incrementor = Increment::Runner.new
+  incrementor.readonly = TRUE
+  incrementor.increment
 end
 
 When /^I run increment$/ do
-  @incrementor = Increment::Runner.new
+  Increment::Runner.new.increment
 end
 
 When /^I run increment (\d+) times$/ do |amount|
@@ -26,5 +32,5 @@ Then /^a new '\.increment' file must be created in users' home\.$/ do
 end
 
 Then /^the number (\d+) is returned$/ do |number|
-  @incrementor.number.should == number.to_i
+  Increment::Runner.new.number.should == number.to_i
 end
