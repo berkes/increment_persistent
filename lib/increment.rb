@@ -4,15 +4,15 @@ module Increment
   class Runner
     attr_accessor :readonly
 
-    def initialize given_number=nil, name="undefined"
-      @name = name
+    def initialize given_number=nil, name=nil
+      @name = name || "undefined"
 
       @filename = File.join(ENV["HOME"], ".increment")
       @store = YAML::Store.new @filename
       create_new unless File.exists? @filename
 
       if given_number.nil?
-        @number = number_in_file
+        @number = number_in_file || 0
       else
         @number = given_number
         write given_number
