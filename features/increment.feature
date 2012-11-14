@@ -7,3 +7,4 @@ Feature: increment
     Given there is no file to store the numbers
     When I run increment
     Then a new '.increment' file must be created in users' home.
+    And the number 1 is returned

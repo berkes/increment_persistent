@@ -8,11 +8,14 @@ Given /^there is no file to store the numbers$/ do
 end
 
 Given /^I run increment$/ do
-  incrementor = Increment::Incrementor.new
-  incrementor.run
+  @incrementor = Increment::Incrementor.new
+  @incrementor.run
 end
 
 Then /^a new '\.increment' file must be created in users' home\.$/ do
   File.exist?(@path).should == true
 end
 
+Then /^the number (\d+) is returned$/ do |number|
+  @incrementor.number.should == number.to_i
+end
