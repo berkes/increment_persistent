@@ -9,5 +9,4 @@
   s.homepage    = 'http://github.com/berkes/increment_persistent'
 
   s.executables << 'increment'
-
 end

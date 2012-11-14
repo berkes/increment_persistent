@@ -1,3 +1,8 @@
+PATH
+  remote: .
+  specs:
+    increment_persistent (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -25,4 +30,5 @@ PLATFORMS
 
 DEPENDENCIES
   cucumber
+  increment_persistent!
   rspec
