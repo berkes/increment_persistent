@@ -7,12 +7,18 @@ Given /^there is no file to store the numbers$/ do
   FileUtils.rm(@path) if File.exists? @path
 end
 
-Given /^I run increment$/ do
+Given /^there is a store with number (\d+)$/ do |number|
+  @incrementor = Increment::Runner.new number
+end
+
+When /^I run increment$/ do
   @incrementor = Increment::Runner.new
 end
 
-Given /^there is a store with number (\d+)$/ do |number|
-  @incrementor = Increment::Runner.new number
+When /^I run increment (\d+) times$/ do |amount|
+  amount.to_i.times do
+    step "I run increment"
+  end
 end
 
 Then /^a new '\.increment' file must be created in users' home\.$/ do

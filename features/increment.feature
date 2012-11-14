@@ -13,3 +13,8 @@ Feature: increment
     Given there is a store with number 42
     When I run increment
     Then the number 43 is returned
+
+  Scenario: Increment number 10 times
+    Given there is a store with number 42
+    When I run increment 10 times
+    Then the number 52 is returned
