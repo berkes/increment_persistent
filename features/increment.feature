@@ -43,6 +43,6 @@ Feature: increment
     And there is a store with number 7 named "bar"
     And there is a store with number 11 named "baz"
     When I request the list
-    Then the list returns "foo", "bar" and "baz"
+    Then the list returns "foo:3", "bar:7" and "baz:11"
 
 
