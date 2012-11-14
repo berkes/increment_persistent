@@ -24,16 +24,18 @@ Named incrementing
 
 (pre)set, write, a number
 
-    $ increment -w 1337
+    $ increment --write 1337
     # => 1337
     $ increment
     # => 1338
+    $ increment -w 1337
+    # 1337
     $ increment -w 42 -n invoice
     # => 42
 
-Or read out without incrementing
+Or read out (dry-run) without incrementing
 
-    $ increment -n
+    $ increment --dry-run
     # => 1338
 
 List all named numbers
