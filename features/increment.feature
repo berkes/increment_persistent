@@ -36,3 +36,13 @@ Feature: increment
     And I run increment on "quotation"
     Then the number 43 for "invoice" is returned
     And the number 1338 for "quotation" is returned
+
+  Scenario: List all numbers
+    Given there is no file to store the numbers
+    And there is a store with number 3 named "foo"
+    And there is a store with number 7 named "bar"
+    And there is a store with number 11 named "baz"
+    When I request the list
+    Then the list returns "foo", "bar" and "baz"
+
+

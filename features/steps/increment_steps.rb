@@ -31,6 +31,10 @@ When /^I run increment (\d+) times$/ do |amount|
   end
 end
 
+When /^I request the list$/ do
+  @list = Increment::Runner.new.list
+end
+
 When /^I run increment on "(.*?)"$/ do |name|
   Increment::Runner.new(nil, name).increment
 end
@@ -45,4 +49,8 @@ end
 
 Then /^the number (\d+) for "(.*?)" is returned$/ do |number, name|
   Increment::Runner.new(nil, name).number.should == number.to_i
+end
+
+Then /^the list returns "(.*?)", "(.*?)" and "(.*?)"$/ do |name1, name2, name3|
+  @list.should == [name1, name2, name3]
 end

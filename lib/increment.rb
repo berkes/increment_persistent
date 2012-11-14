@@ -31,6 +31,14 @@ module Increment
       @number
     end
 
+    def list
+      list = []
+      @store.transaction(false) do
+        list = @store.roots.each.to_a
+      end
+      list
+    end
+
     private
     def number_in_file
       number = 0
