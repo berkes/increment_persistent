@@ -8,3 +8,8 @@ Feature: increment
     When I run increment
     Then a new '.increment' file must be created in users' home.
     And the number 1 is returned
+
+  Scenario: Increment number
+    Given there is a store with number 42
+    When I run increment
+    Then the number 43 is returned

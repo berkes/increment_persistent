@@ -8,8 +8,11 @@ Given /^there is no file to store the numbers$/ do
 end
 
 Given /^I run increment$/ do
-  @incrementor = Increment::Incrementor.new
-  @incrementor.run
+  @incrementor = Increment::Runner.new
+end
+
+Given /^there is a store with number (\d+)$/ do |number|
+  @incrementor = Increment::Runner.new number
 end
 
 Then /^a new '\.increment' file must be created in users' home\.$/ do
