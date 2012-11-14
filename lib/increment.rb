@@ -1,8 +1,14 @@
+require "yaml/store"
+
 module Increment
   class Runner
     attr_accessor :readonly
-    def initialize given_number=nil, name=nil
+
+    def initialize given_number=nil, name="undefined"
+      @name = name
+
       @filename = File.join(ENV["HOME"], ".increment")
+      @store = YAML::Store.new @filename
       create_new unless File.exists? @filename
 
       if given_number.nil?
@@ -14,7 +20,7 @@ module Increment
     end
 
     def increment
-      if may_write?
+      unless @readonly
         @number += 1
         write @number
       end
@@ -26,24 +32,22 @@ module Increment
     end
 
     private
-    def may_write?
-      return FALSE if @readonly
-
-      return TRUE
-    end
-
     def number_in_file
-      File.read(@filename).to_i || 0
+      number = 0
+      @store.transaction(false) do
+        number = @store[@name]
+      end
+      number
     end
 
     def write number
-      File.open(@filename, "w+") do |storage|
-        storage.write(number)
+      @store.transaction do
+        @store[@name] = number || 1
       end
     end
 
     def create_new
-      write 0 if may_write?
+      write 0
     end
   end
 end

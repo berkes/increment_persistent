@@ -11,7 +11,7 @@ Given /^there is a store with number (\d+)$/ do |number|
   i = Increment::Runner.new number.to_i
 end
 
-Given /^there is a store with number (\d+) named '([^']+)'$/ do |number, name|
+Given /^there is a store with number (\d+) named "(.*?)"$/ do |number, name|
   i = Increment::Runner.new number.to_i, name
 end
 
@@ -31,6 +31,10 @@ When /^I run increment (\d+) times$/ do |amount|
   end
 end
 
+When /^I run increment on "(.*?)"$/ do |name|
+  Increment::Runner.new(nil, name).increment
+end
+
 Then /^a new '\.increment' file must be created in users' home\.$/ do
   File.exist?(@path).should == true
 end
@@ -39,6 +43,6 @@ Then /^the number (\d+) is returned$/ do |number|
   Increment::Runner.new.number.should == number.to_i
 end
 
-Then /^the number (\d+) for '([^']+)' returned$/ do |number, name|
+Then /^the number (\d+) for "(.*?)" is returned$/ do |number, name|
   Increment::Runner.new(nil, name).number.should == number.to_i
 end

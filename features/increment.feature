@@ -25,6 +25,14 @@ Feature: increment
     Then the number 42 is returned
 
   Scenario: Increment a number named "invoice"
-    Given there is a store with number 42 named 'invoice'
-    When I run increment
-    Then the number 43 for 'invoice' returned
+    Given there is a store with number 42 named "invoice"
+    When I run increment on "invoice"
+    Then the number 43 for "invoice" is returned
+
+  Scenario: Increment numbers named "invoice" and "quotation"
+    Given there is a store with number 42 named "invoice"
+    And there is a store with number 1337 named "quotation"
+    When I run increment on "invoice"
+    And I run increment on "quotation"
+    Then the number 43 for "invoice" is returned
+    And the number 1338 for "quotation" is returned
