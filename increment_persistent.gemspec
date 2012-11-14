@@ -8,5 +8,7 @@
   s.files       = ["lib/increment.rb"]
   s.homepage    = 'http://github.com/berkes/increment_persistent'
 
+  s.add_runtime_dependency "thor", "~> 0.16.0"
+
   s.executables << 'increment'
 end

@@ -1,0 +1,33 @@
+#!/usr/bin/ruby
+
+require "thor"
+require "./lib/increment.rb"
+
+module Increment
+  class CLI < Thor
+    default_task :increment
+
+    class_option :dry_run, :type => :boolean, :aliases => ["-n"]
+    class_option :name, :type => :string
+    class_option :write, :type => :numeric, :aliases => ["-w"]
+    desc "increment a number", "reads a stored number, increments it, returns and saves it"
+    def increment
+      number = options[:write]
+      name   = options[:name]
+      inc = Increment::Runner.new number, name
+      inc.readonly = TRUE if options[:dry_run]
+      inc.increment       unless options[:write]
+      puts inc.number
+    end
+
+    desc "list the named numbers", "Print is list of all names of all numbers"
+    def list
+      inc = Increment::Runner.new
+      inc.list.each do |name|
+        puts "#{name}"
+      end
+    end
+  end
+end
+
+Increment::CLI.start(ARGV)
