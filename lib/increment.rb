@@ -34,7 +34,9 @@ module Increment
     def list
       list = []
       @store.transaction(false) do
-        list = @store.roots.each.to_a
+        @store.roots.each do |root|
+          list << "#{root}:#{@store[root]}"
+        end
       end
       list
     end

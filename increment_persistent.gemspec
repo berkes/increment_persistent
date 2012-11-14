@@ -1,6 +1,6 @@
 ﻿Gem::Specification.new do |s|
   s.name        = 'increment_persistent'
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
   s.summary     = "Increments numbers and remembers them."
   s.description = "Increment numbers persistently. Stores the numbers in a textfile ~/.increment"
   s.authors     = ["Bèr Kessels"]
