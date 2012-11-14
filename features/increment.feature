@@ -23,3 +23,8 @@ Feature: increment
     Given there is a store with number 42
     When I run the runner with '-n'
     Then the number 42 is returned
+
+  Scenario: Increment a number named "invoice"
+    Given there is a store with number 42 named 'invoice'
+    When I run increment
+    Then the number 43 for 'invoice' returned

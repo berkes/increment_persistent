@@ -11,7 +11,11 @@ Given /^there is a store with number (\d+)$/ do |number|
   i = Increment::Runner.new number.to_i
 end
 
-Given /^I run the runner with '\-n'$/ do
+Given /^there is a store with number (\d+) named '([^']+)'$/ do |number, name|
+  i = Increment::Runner.new number.to_i, name
+end
+
+When /^I run the runner with '\-n'$/ do
   incrementor = Increment::Runner.new
   incrementor.readonly = TRUE
   incrementor.increment
@@ -33,4 +37,8 @@ end
 
 Then /^the number (\d+) is returned$/ do |number|
   Increment::Runner.new.number.should == number.to_i
+end
+
+Then /^the number (\d+) for '([^']+)' returned$/ do |number, name|
+  Increment::Runner.new(nil, name).number.should == number.to_i
 end

@@ -1,7 +1,7 @@
 module Increment
   class Runner
     attr_accessor :readonly
-    def initialize given_number=nil
+    def initialize given_number=nil, name=nil
       @filename = File.join(ENV["HOME"], ".increment")
       create_new unless File.exists? @filename
 
