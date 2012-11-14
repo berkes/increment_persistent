@@ -44,7 +44,7 @@ List all named numbers
 
 # Author
 
-Bèr ```[berkes](http://berk.es)``` Kessels <ber webschuur com >
+Bèr [berkes](http://berk.es) Kessels <ber webschuur com >
 
 # Requirements
 
